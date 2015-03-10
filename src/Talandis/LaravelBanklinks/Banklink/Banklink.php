@@ -166,7 +166,9 @@ abstract class Banklink
     public function isValidResponse($data, $fields)
     {
 
-        $this->orderId = $data[ $this->orderIdField ];
+        if (!empty( $data[ $this->orderIdField ])) {
+            $this->orderId = $data[ $this->orderIdField ];
+        }
 
         return $this->validateSignature($data, $fields);
     }
