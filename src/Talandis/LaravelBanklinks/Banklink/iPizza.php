@@ -7,7 +7,7 @@ abstract class iPizza extends Banklink
 
     protected $requestEncoding = 'UTF-8';
 
-    protected $version = '0008';
+    protected $version = '008';
 
     protected $language = 'LIT';
 
