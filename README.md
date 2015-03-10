@@ -26,7 +26,7 @@ After updating composer, add the ServiceProvider to the providers array in confi
 Copy the package config to your local config with the publish command:
 
 ```
-php artisan config:publish
+php artisan config:publish talandis/laravel-banklinks
 ```
 
 Don't forget to enter your certificates and other details into configuration files.
