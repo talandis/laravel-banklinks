@@ -142,9 +142,9 @@ abstract class Banklink
         return $this->orderId;
     }
 
-    public function setCallbackUrl($callbackUrl)
+    public function setCallbackUrl($url)
     {
-        $this->callbackUrl = str_replace('http', 'https', $callbackUrl );
+        $this->callbackUrl = $url;
 
         return $this;
     }
