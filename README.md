@@ -55,11 +55,11 @@ Sample form
     <?php endforeach; ?>
     <input type="submit" value="Make payment" />
 </form>
+```
 
 #### Succesful payment callback
 
 ```php
-
 $bank = new \Talandis\Banklinks\Lithuania\SEB();
 
 if ( $bank->isPaidResponse( Input::all() ) ) {
@@ -68,13 +68,15 @@ if ( $bank->isPaidResponse( Input::all() ) ) {
 
 } else if ( $bank->isReturnResponse( Input::all() ) ) {
 
-
 }
+```
 
 #### Cancelled payment callback
 
+```php
 $bank = new \Talandis\Banklinks\Lithuania\SEB();
 
 if ( $bank->isCancelResponse( Input::all() ) ) {
 
 }
+```
