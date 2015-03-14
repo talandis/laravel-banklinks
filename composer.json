@@ -1,6 +1,7 @@
 {
     "name": "talandis/laravel-banklinks",
     "description": "Laravel Bundle for Lithuanian/Latvian banks' interet services",
+    "license": "MIT",
     "authors": [
         {
             "name": "Tomas Talandis",
