@@ -92,7 +92,7 @@ abstract class Banklink
 
         $fieldsMap = array(
             'seller_id' => 'sellerId',
-            'seller_acc_num' => 'sellerAccounNumber',
+            'seller_acc_num' => 'sellerAccountNumber',
             'seller_name' => 'sellerName',
             'private_key' => 'privateKey',
             'public_key' => 'publicKey',
