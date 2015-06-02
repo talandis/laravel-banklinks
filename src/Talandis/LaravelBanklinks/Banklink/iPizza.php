@@ -167,7 +167,7 @@ abstract class iPizza extends Banklink
 
 //            $content = !empty( $data[ $fieldName ]) ? $data[$fieldName] : '';
 
-            $hash .= sprintf("%03d", strlen($content)) . $content;
+            $hash .= sprintf("%03d", mb_strlen($content, $this->requestEncoding )) . $content;
         }
 
         return $hash;
