@@ -98,27 +98,34 @@ class Solo extends Banklink
         return $this->getPaymentSuccessFields();
     }
 
-    protected function getRequestSignature($data, $fields)
+    protected function generateHash($data, $fields)
     {
-
         $hash = '';
         foreach ($fields as $fieldName) {
 
-            $content = !empty( $data[$fieldName] ) ? $data[$fieldName] : '';
+            $content = !empty($data[$fieldName]) ? $data[$fieldName] : '';
 
             $hash .= $content . '&';
         }
         $hash .= $this->privateKey . '&';
 
+        return $hash;
+    }
+
+    protected function getRequestSignature($data, $fields)
+    {
+
+        $hash = $this->generateHash($data, $fields);
+
         return strtoupper(hash($this->algorithm, $hash));
     }
 
-    protected function validateSignature( $data, $fields )
+    protected function validateSignature($data, $fields)
     {
 
         $fields = $this->getPaymentSuccessFields();
 
-        $hash = $this->getRequestSignature( $data, $fields );
+        $hash = $this->getRequestSignature($data, $fields);
 
         return $hash == $data['RETURN_MAC'];
 

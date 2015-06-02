@@ -62,6 +62,8 @@ abstract class Banklink
 
     protected abstract function getRequestSignature( $data, $id );
 
+    protected abstract function generateHash( $data, $fields );
+
     public function isReturnResponse( $data )
     {
         return $this->isValidResponse( $data, $this->getPaymentReturnFields() );
@@ -171,6 +173,13 @@ abstract class Banklink
         }
 
         return $this->validateSignature($data, $fields);
+    }
+
+    public function getHash( $orderId, $sum, $description )
+    {
+        $requestData = $this->getPaymentRequestData($orderId, $sum, $description );
+
+        return $this->generateHash( $requestData, $this->getPaymentRequestFields() );
     }
 
 }

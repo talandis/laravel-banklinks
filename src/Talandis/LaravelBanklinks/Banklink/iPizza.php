@@ -135,7 +135,7 @@ abstract class iPizza extends Banklink
 
         $key = openssl_pkey_get_public('file://' . $this->publicKey);
 
-        return (openssl_verify( $hash , base64_decode($data[ $this->signatureReturnedField ]), $key) == 1);
+        return (openssl_verify($hash, base64_decode($data[$this->signatureReturnedField]), $key) == 1);
 
     }
 
@@ -153,21 +153,19 @@ abstract class iPizza extends Banklink
         return $result;
     }
 
-    protected function generateHash(array $data, $fields)
+    protected function generateHash($data, $fields)
     {
 
         $hash = '';
         foreach ($fields as $fieldName) {
 
-            if ( empty( $data[ $fieldName ])) {
+            if (empty($data[$fieldName])) {
                 continue;
             }
 
-            $content = $data[ $fieldName ];
+            $content = $data[$fieldName];
 
-//            $content = !empty( $data[ $fieldName ]) ? $data[$fieldName] : '';
-
-            $hash .= sprintf("%03d", mb_strlen($content, $this->requestEncoding )) . $content;
+            $hash .= sprintf("%03d", mb_strlen($content, $this->requestEncoding)) . $content;
         }
 
         return $hash;
@@ -178,19 +176,19 @@ abstract class iPizza extends Banklink
         return 'VK_ENCODING';
     }
 
-    public function isReturnResponse( $data )
+    public function isReturnResponse($data)
     {
-        return $this->isValidResponse( $data, $this->getPaymentReturnFields() ) && $data['VK_SERVICE'] == $this->getServiceId( self::PAYMENT_RETURN );
+        return $this->isValidResponse($data, $this->getPaymentReturnFields()) && $data['VK_SERVICE'] == $this->getServiceId(self::PAYMENT_RETURN);
     }
 
-    public function isCancelResponse( $data )
+    public function isCancelResponse($data)
     {
-        return $this->isValidResponse( $data, $this->getPaymentCancelFields() ) && $data['VK_SERVICE'] == $this->getServiceId( self::PAYMENT_CANCEL );
+        return $this->isValidResponse($data, $this->getPaymentCancelFields()) && $data['VK_SERVICE'] == $this->getServiceId(self::PAYMENT_CANCEL);
     }
 
-    public function isPaidResponse( $data )
+    public function isPaidResponse($data)
     {
-        return $this->isValidResponse( $data, $this->getPaymentSuccessFields() ) && $data['VK_SERVICE'] == $this->getServiceId( self::PAYMENT_SUCCESS );
+        return $this->isValidResponse($data, $this->getPaymentSuccessFields()) && $data['VK_SERVICE'] == $this->getServiceId(self::PAYMENT_SUCCESS);
     }
 
 }
