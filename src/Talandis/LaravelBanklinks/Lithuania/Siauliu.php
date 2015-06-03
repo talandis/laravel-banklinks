@@ -13,19 +13,12 @@ class Siauliu extends iPizza
 
     protected $version = '008';
 
-    protected function getAdditionalFields()
-    {
-        return array(
-            'VK_ENCODING' => $this->requestEncoding
-        );
-    }
-
-
     public function getPaymentRequestData($orderId, $sum, $description)
     {
 
         $requestData = parent::getPaymentRequestData($orderId, $sum, $description);
-//        $requestData['VK_PANK'] = $this->bankCode;
+
+        unset( $requestData['VK_CANCEL'] );
 
         return $requestData;
     }
