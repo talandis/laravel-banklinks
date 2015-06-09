@@ -5,7 +5,7 @@ namespace Talandis\LaravelBanklinks\Banklink;
 abstract class iPizza extends Banklink
 {
 
-    protected $requestEncoding = 'UTF-8';
+    protected $requestEncoding = '';
 
     protected $version = '008';
 
@@ -165,7 +165,12 @@ abstract class iPizza extends Banklink
 
             $content = $data[$fieldName];
 
-            $hash .= sprintf("%03d", mb_strlen($content, $this->requestEncoding)) . $content;
+            if ( !empty( $this->requestEncoding ) ) {
+                $hash .= sprintf("%03d", mb_strlen($content, $this->requestEncoding)) . $content;
+            } else {
+                $hash .= sprintf("%03d", strlen($content)) . $content;
+            }
+
         }
 
         return $hash;
