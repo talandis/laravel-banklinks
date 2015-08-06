@@ -20,7 +20,7 @@ composer require talandis/laravel-banklinks
 After updating composer, add the ServiceProvider to the providers array in config/app.php
 
 ```
-'Talandis\LaravelBanklinks\ServiceProvider',
+'Talandis\LaravelBanklinks\LaravelBanklinksServiceProvider',
 ```
 
 Copy the package config to your local config with the publish command:
