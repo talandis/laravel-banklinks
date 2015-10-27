@@ -92,6 +92,12 @@ abstract class Banklink
 
         $configuration = \Config::get('laravel-banklinks::' . $this->configName );
 
+        $this->setConfiguration( $configuration );
+    }
+
+    public function setConfiguration( $configuration )
+    {
+
         $fieldsMap = array(
             'seller_id' => 'sellerId',
             'seller_acc_num' => 'sellerAccountNumber',
