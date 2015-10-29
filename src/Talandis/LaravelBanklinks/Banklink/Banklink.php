@@ -107,7 +107,8 @@ abstract class Banklink
             'private_key_passphrase' => 'passphrase',
             'currency' => 'currency',
             'language' => 'language',
-            'request_url' => 'requestUrl'
+            'request_url' => 'requestUrl',
+            'encoding' => 'requestEncoding',
         );
 
         foreach ( $fieldsMap as $configurationField => $classVariable ) {
