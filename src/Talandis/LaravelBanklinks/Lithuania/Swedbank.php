@@ -64,7 +64,7 @@ class Swedbank extends iPizza
 
     public function isReturnResponse( $data )
     {
-        return $this->isValidResponse( $data, $this->getPaymentSuccessFields() ) && $data['VK_AUTO'] == 'N';
+        return $this->isValidResponse( $data, $this->getPaymentSuccessFields() ) && $data['VK_AUTO'] == 'N' && $data['VK_SERVICE'] != $this->getServiceId(self::PAYMENT_CANCEL);
     }
 
     public function isPaidResponse( $data )
