@@ -64,11 +64,11 @@ class Swedbank extends iPizza
 
     public function isReturnResponse( $data )
     {
-        return $this->isValidResponse( $data, $this->getPaymentSuccessFields() ) && $data['VK_AUTO'] == 'N' && $data['VK_SERVICE'] != $this->getServiceId(self::PAYMENT_CANCEL);
+        return $this->isValidResponse( $data, $this->getPaymentSuccessFields() ) && $data['VK_AUTO'] == 'N' && $data['VK_SERVICE'] == $this->getServiceId(self::PAYMENT_SUCCESS);
     }
 
     public function isPaidResponse( $data )
     {
-        return $this->isValidResponse( $data, $this->getPaymentSuccessFields() ) && $data['VK_AUTO'] == 'Y';
+        return $this->isValidResponse( $data, $this->getPaymentSuccessFields() ) && $data['VK_AUTO'] == 'Y' && $data['VK_SERVICE'] == $this->getServiceId(self::PAYMENT_SUCCESS);
     }
 }
