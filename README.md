@@ -20,13 +20,13 @@ composer require talandis/laravel-banklinks
 After updating composer, add the ServiceProvider to the providers array in config/app.php
 
 ```
-'Talandis\LaravelBanklinks\LaravelBanklinksServiceProvider',
+Talandis\LaravelBanklinks\LaravelBanklinksServiceProvider::class,
 ```
 
 Copy the package config to your local config with the publish command:
 
 ```
-php artisan config:publish talandis/laravel-banklinks
+php artisan vendor:publish --provider="Talandis\LaravelBanklinks\LaravelBanklinksServiceProvider"
 ```
 
 Don't forget to enter your certificates and other details into configuration files.
@@ -38,9 +38,10 @@ Don't forget to enter your certificates and other details into configuration fil
 Below is a simple sample of payment request.
 
 ```php
-$bank = new \Talandis\Banklinks\Lithuania\SEB();
-$bank->setCallbackUrl( URL::to( 'callback/seb' ) );
-$bank->setCancelUrl( URL::to('cancel/seb' ) );
+$bank = new \Talandis\LaravelBanklinks\Lithuania\SEB();
+$bank->setConfiguration( config('banklinks.lithuania-seb') );   // This line is optional. Same configuration is read automatically
+$bank->setCallbackUrl( url( 'callback/seb' ) );
+$bank->setCancelUrl( url('cancel/seb' ) );
 
 $requestData = $bank->getPaymentRequest(1, 25, 'Beer + Movie');
 $requestUrl = $bank->getRequestUrl();
@@ -49,18 +50,19 @@ $requestUrl = $bank->getRequestUrl();
 Sample form
 
 ```html
-<form action="<?php echo $requestUrl ?>" method="post">
-    <?php foreach ( $requestData as $fieldName => $value ): ?>
-      <input type="hidden" name="<?php echo $fieldName ?>" value="<? echo $value ?>" />
-    <?php endforeach; ?>
-    <input type="submit" value="Make payment" />
+<form action="{{$requestUrl}}" method="post">
+    @foreach ( $requestData as $fieldName => $value ):
+      <input type="hidden" name="{{$fieldName}}" value="{{$value}}" />
+    @endforeach
+    <button type="submit">Make payment</button>
 </form>
 ```
 
 #### Succesful payment callback
 
-```php
+```blade
 $bank = new \Talandis\Banklinks\Lithuania\SEB();
+$bank->setConfiguration( config('banklinks.lithuania-seb') );   // This line is optional. Same configuration is read automatically
 
 if ( $bank->isPaidResponse( Input::all() ) ) {
 
@@ -75,6 +77,7 @@ if ( $bank->isPaidResponse( Input::all() ) ) {
 
 ```php
 $bank = new \Talandis\Banklinks\Lithuania\SEB();
+$bank->setConfiguration( config('banklinks.lithuania-seb') );   // This line is optional. Same configuration is read automatically
 
 if ( $bank->isCancelResponse( Input::all() ) ) {
 

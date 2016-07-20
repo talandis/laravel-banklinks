@@ -18,7 +18,7 @@ class LaravelBanklinksServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
-		$this->package('talandis/laravel-banklinks');
+        $this->publishes([ __DIR__.'/../../config/' => config_path('banklinks') ], '');
 	}
 
 	/**
