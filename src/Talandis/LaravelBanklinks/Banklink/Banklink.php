@@ -90,7 +90,7 @@ abstract class Banklink
             throw new \LogicException( 'Missing banklink configuration name' );
         }
 
-        $configuration = \Config::get('laravel-banklinks::' . $this->configName );
+        $configuration = \Config::get('banklinks.' . $this->configName );
 
         $this->setConfiguration( $configuration );
     }
