@@ -9,7 +9,7 @@ class SEB extends iPizza
 
     protected $configName = 'lithuania-seb';
 
-    protected $requestUrl = 'https://ebankas.seb.lt/cgi-bin/vbint.sh/vbnet.w';
+    protected $requestUrl = 'https://e.seb.lt/banklink/in';
 
     protected function getAdditionalFields()
     {
