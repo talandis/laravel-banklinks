@@ -95,10 +95,9 @@ abstract class Banklink
         $this->setConfiguration( $configuration );
     }
 
-    public function setConfiguration( $configuration )
+    protected function getConfigurationFields()
     {
-
-        $fieldsMap = array(
+        return array(
             'seller_id' => 'sellerId',
             'seller_acc_num' => 'sellerAccountNumber',
             'seller_name' => 'sellerName',
@@ -110,6 +109,12 @@ abstract class Banklink
             'request_url' => 'requestUrl',
             'encoding' => 'requestEncoding',
         );
+    }
+
+    public function setConfiguration( $configuration )
+    {
+
+        $fieldsMap = $this->getConfigurationFields();
 
         foreach ( $fieldsMap as $configurationField => $classVariable ) {
             if (!empty( $configuration[ $configurationField ] ) ) {

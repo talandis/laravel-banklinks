@@ -24,6 +24,14 @@ class Solo extends Banklink
 
     protected $orderIdField = 'RETURN_REF';
 
+    protected function getConfigurationFields()
+    {
+        $fields = parent::getConfigurationFields();
+        $fields['algorithm'] = 'algorithm';
+
+        return $fields;
+    }
+
     protected function getServiceId($type)
     {
         switch ($type) {
