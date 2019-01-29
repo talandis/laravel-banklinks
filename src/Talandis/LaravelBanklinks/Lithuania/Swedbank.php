@@ -9,7 +9,7 @@ class Swedbank extends iPizza
 
     protected $configName = 'lithuania-swedbank';
 
-    protected $requestUrl = 'https://ib.swedbank.lt/banklink';
+    protected $requestUrl = 'https://www.swedbank.lt/banklink/';
 
     protected function getAdditionalFields()
     {
