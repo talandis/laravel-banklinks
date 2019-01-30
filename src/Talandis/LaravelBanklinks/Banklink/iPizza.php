@@ -145,6 +145,10 @@ abstract class iPizza extends Banklink
 
         $keyId = openssl_get_privatekey('file://' . $this->privateKey, $this->passphrase);
 
+        if (!$keyId) {
+            throw new \ErrorException(openssl_error_string());
+        }
+
         openssl_sign($hash, $signature, $keyId);
         openssl_free_key($keyId);
 
@@ -165,7 +169,7 @@ abstract class iPizza extends Banklink
 
             $content = $data[$fieldName];
 
-            if ( !empty( $this->requestEncoding ) ) {
+            if (!empty($this->requestEncoding)) {
                 $hash .= sprintf("%03d", mb_strlen($content, $this->requestEncoding)) . $content;
             } else {
                 $hash .= sprintf("%03d", strlen($content)) . $content;
