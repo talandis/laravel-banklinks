@@ -64,6 +64,11 @@ abstract class Banklink
 
     protected abstract function generateHash( $data, $fields );
 
+    public function getRequestMethod()
+    {
+        return 'POST';
+    }
+
     public function isReturnResponse( $data )
     {
         return $this->isValidResponse( $data, $this->getPaymentReturnFields() );
