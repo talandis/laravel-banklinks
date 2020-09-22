@@ -91,13 +91,11 @@ abstract class Banklink
             $this->configName = $configName;
         }
 
-        if ( empty( $this->configName )) {
-            throw new \LogicException( 'Missing banklink configuration name' );
+        if ( !empty( $this->configName )) {
+            $configuration = \Config::get('banklinks.' . $this->configName );
+            $this->setConfiguration( $configuration );
         }
 
-        $configuration = \Config::get('banklinks.' . $this->configName );
-
-        $this->setConfiguration( $configuration );
     }
 
     protected function getConfigurationFields()
