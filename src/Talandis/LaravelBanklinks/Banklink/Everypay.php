@@ -126,7 +126,7 @@ class Everypay extends Banklink
                 $this->apiUsername,
                 $this->apiSecret
             ],
-            'form_params' => [
+            'query' => [
                 'api_username' => $this->apiUsername,
             ]
         ]);
