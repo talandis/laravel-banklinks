@@ -22,7 +22,7 @@ class SEB extends iPizza
         );
     }
 
-    public function getPaymentRequestData($orderId, $sum, $description)
+    public function getPaymentRequestData($orderId, $sum, $description, $email = null)
     {
 
         $requestData = array(

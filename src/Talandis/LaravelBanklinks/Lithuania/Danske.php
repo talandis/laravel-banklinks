@@ -13,10 +13,10 @@ class Danske extends iPizza
 
     protected $bankCode = '74000';
 
-    public function getPaymentRequestData($orderId, $sum, $description)
+    public function getPaymentRequestData($orderId, $sum, $description, $email = null)
     {
 
-        $requestData = parent::getPaymentRequestData($orderId, $sum, $description);
+        $requestData = parent::getPaymentRequestData($orderId, $sum, $description, $email);
         $requestData['VK_PANK'] = $this->bankCode;
 
         return $requestData;

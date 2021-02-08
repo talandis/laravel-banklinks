@@ -48,7 +48,7 @@ abstract class Banklink
 
     protected abstract function getServiceId( $type );
 
-    protected abstract function getPaymentRequestData($orderId, $sum, $description );
+    protected abstract function getPaymentRequestData($orderId, $sum, $description, $email = null );
 
     protected abstract function getPaymentRequestFields();
 
@@ -132,10 +132,10 @@ abstract class Banklink
         return $orderId;
     }
 
-    public function getPaymentRequest( $orderId, $sum, $description )
+    public function getPaymentRequest( $orderId, $sum, $description, $email = null )
     {
 
-        $requestData = $this->getPaymentRequestData($orderId, $sum, $description );
+        $requestData = $this->getPaymentRequestData($orderId, $sum, $description, $email );
 
         $requestData[ $this->signatureField ] = $this->getRequestSignature($requestData, $this->getPaymentRequestFields() );
 

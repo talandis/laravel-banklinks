@@ -13,10 +13,10 @@ class Siauliu extends iPizza
 
     protected $version = '008';
 
-    public function getPaymentRequestData($orderId, $sum, $description)
+    public function getPaymentRequestData($orderId, $sum, $description, $email = null)
     {
 
-        $requestData = parent::getPaymentRequestData($orderId, $sum, $description);
+        $requestData = parent::getPaymentRequestData($orderId, $sum, $description, $email);
 
         unset( $requestData['VK_CANCEL'] );
 

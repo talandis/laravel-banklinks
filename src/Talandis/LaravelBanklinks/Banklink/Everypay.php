@@ -85,7 +85,7 @@ class Everypay extends Banklink
         return $result->payment_link;
     }
 
-    public function getPaymentRequest($orderId, $sum, $description)
+    public function getPaymentRequest($orderId, $sum, $description, $email = null)
     {
         $this->orderId = $orderId;
         $this->amount = $sum;
@@ -93,7 +93,7 @@ class Everypay extends Banklink
         return [];
     }
 
-    protected function getPaymentRequestData($orderId, $sum, $description)
+    protected function getPaymentRequestData($orderId, $sum, $description, $email = null)
     {
     }
 

@@ -37,7 +37,7 @@ abstract class iPizza extends Banklink
         throw new \LogicException(sprintf('Invalid service type: %s', $type));
     }
 
-    public function getPaymentRequestData($orderId, $sum, $description)
+    public function getPaymentRequestData($orderId, $sum, $description, $email = null )
     {
 
         $requestData = array(
