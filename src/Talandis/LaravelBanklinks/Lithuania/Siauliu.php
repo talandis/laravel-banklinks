@@ -9,7 +9,7 @@ class Siauliu extends iPizza
 
     protected $configName = 'lithuania-siauliu';
 
-    protected $requestUrl = 'https://online.sb.lt/ib/site/ibpay/login';
+    protected $requestUrl = 'https://e.sb.lt/ibpay/redirect';
 
     protected $version = '008';
 
