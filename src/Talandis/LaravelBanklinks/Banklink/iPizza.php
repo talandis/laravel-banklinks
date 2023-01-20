@@ -150,7 +150,6 @@ abstract class iPizza extends Banklink
         }
 
         openssl_sign($hash, $signature, $keyId);
-        openssl_free_key($keyId);
 
         $result = base64_encode($signature);
 
