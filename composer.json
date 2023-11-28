@@ -1,6 +1,6 @@
 {
     "name": "talandis/laravel-banklinks",
-    "description": "Laravel Bundle for Lithuanian/Latvian banks' interet services",
+    "description": "Laravel Bundle for Lithuanian/Latvian banks' internet services",
     "license": "MIT",
     "authors": [
         {
@@ -10,7 +10,7 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "illuminate/support": "5.*|6.*|7.*|8.*|9.*",
+        "illuminate/support": "5.*|6.*|7.*|8.*|9.*|10.*",
         "guzzlehttp/guzzle": "7.*|6.*|8.*"
     },
     "autoload": {
