@@ -1,17 +1,22 @@
 # Laravel Bundle for Lithuanian/Latvian Banks internet services
 
 ### Banks implemented
-
-Lithuania: Danske, DNB, Nordea, SEB, Šiaulių bankas, Swedbank
+Lithuania: Danske, DNB, Nordea, SEB, Šiaulių bankas, Swedbank, Kevin, Everypay, Neopay  
 Latvian: Citadele, SEB
 
 ### Installation
-
-
 Require this package with composer:
 
 ```
 composer require talandis/laravel-banklinks
+```
+
+#### Provider specific installation
+#### Kevin.EU
+
+If you want to use `Kevin` payments you need to add [getkevin/kevin-php](https://packagist.org/packages/getkevin/kevin-php) dependency to your project:
+```bash
+composer require getkevin/kevin-php
 ```
 
 ### Configuration
