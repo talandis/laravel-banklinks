@@ -19,6 +19,8 @@ abstract class iPizza extends Banklink
 
     protected $orderIdField = 'VK_REF';
 
+    protected $signingAlgorithm = OPENSSL_ALGO_SHA1;
+
     protected function getServiceId($type)
     {
         switch ($type) {
@@ -149,7 +151,7 @@ abstract class iPizza extends Banklink
             throw new \ErrorException(openssl_error_string());
         }
 
-        openssl_sign($hash, $signature, $keyId);
+        openssl_sign($hash, $signature, $keyId, $this->signingAlgorithm );
 
         $result = base64_encode($signature);
 

@@ -11,6 +11,10 @@ class SEB extends iPizza
 
     protected $requestUrl = 'https://e.seb.lt/banklink/in';
 
+    protected $version = '009';
+
+    protected $signingAlgorithm = OPENSSL_ALGO_SHA512;
+
     protected function getAdditionalFields()
     {
         return array(
