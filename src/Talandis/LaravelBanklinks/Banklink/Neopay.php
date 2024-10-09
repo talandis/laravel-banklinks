@@ -10,6 +10,8 @@ class Neopay extends Banklink
 
     protected $projectKey;
 
+    protected $includeIat;
+
     protected $test;
 
     protected $description;
@@ -23,6 +25,7 @@ class Neopay extends Banklink
         return array(
             'project_id' => 'projectId',
             'project_key' => 'projectKey',
+            'include_iat' => 'includeIat',
             'test' => 'test',
         );
     }
@@ -44,20 +47,25 @@ class Neopay extends Banklink
 
     public function getRequestUrl()
     {
-        return 'https://psd2.neopay.lt/widget.html?' . $this->generateJwt([
-                'projectId' => $this->projectId,
-                'transactionId' => uniqid($this->orderId . '.', true),
-                'orderId' => $this->orderId,
-                'amount' => $this->test && $this->amount > 1 ? 0.99 : $this->amount,
-                'currency' => 'EUR',
-                'paymentPurpose' => $this->description,
-                'flow' => 'redirect+',
-                'serviceType' => 'pisp',
-                'clientRedirectUrl' => $this->returnUrl,
-                'bank' => $this->bank,
-                'iat' => time(),
-                'exp' => strtotime('+2 days'),
-            ], $this->projectKey);
+        $fields = [
+            'projectId' => $this->projectId,
+            'transactionId' => uniqid($this->orderId . '.', true),
+            'orderId' => $this->orderId,
+            'amount' => $this->test && $this->amount > 1 ? 0.99 : $this->amount,
+            'currency' => 'EUR',
+            'paymentPurpose' => $this->description,
+            'flow' => 'redirect+',
+            'serviceType' => 'pisp',
+            'clientRedirectUrl' => $this->returnUrl,
+            'bank' => $this->bank,
+            'exp' => strtotime('+2 days'),
+        ];
+
+        if (!empty($this->includeIat)) {
+            $fields['iat'] = time();
+        }
+
+        return 'https://psd2.neopay.lt/widget.html?' . $this->generateJwt($fields, $this->projectKey);
     }
 
     public function getPaymentRequest($orderId, $sum, $description, $email = null)
