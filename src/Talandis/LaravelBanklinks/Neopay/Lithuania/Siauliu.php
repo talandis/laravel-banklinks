@@ -2,10 +2,10 @@
 
 namespace Talandis\LaravelBanklinks\Neopay\Lithuania;
 
-use Talandis\LaravelBanklinks\Banklink\Neopay;
+// Left this for backwards compatibility
 
-class Siauliu extends Neopay {
+class Siauliu extends Artea
+{
 
-    protected $bank = 'CBSBLT26';
 
 }
